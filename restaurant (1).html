@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/style.css">
+        <style>
+
+            body{
+                font-family: latha;
+                margin: 0;
+                padding: 0;
+                color: white;
+                background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65), rgba(0,0,0,0.38), rgba(0,0,0,0)), url(food.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .box{
+                width: 900px;
+                float: right;
+                border:1px solid black;
+                border-radius: 16px;
+                background: var(--m-3-sys-light-surface-container-highest, #E6E0E9);
+                /* M3/Elevation Light/5 */
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.30), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+            }
+
+            .box ul li{
+                width: 120px;
+                float: left; 
+                margin: 10px ;
+                text-align: center;
+                display: inline-flex;
+                height: 40px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex-shrink: 0;
+                border-radius: 100px;
+                border: 1px solid var(--m-3-sys-light-primary, rgb(135, 112, 165));
+            }
+            .box ul li a{ 
+                text-decoration: none;
+                color:darkgray;
+            }
+            .box ul li:hover{background-color: rgb(135, 112, 165); 
+            }
+            .box ul li a:hover{color: white;
+            }
+            .wd{
+                width: 300px;
+                height: 539px;
+                background-color: black;
+                opacity: 0.9;
+                padding: 55px;
+                background: var(--m-3-sys-light-surface-container-highest, black);
+                /* M3/Elevation Light/5 */
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.30), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+                border-radius: 10px;
+                overflow: auto;
+            }
+            .wd h1{
+                text-align: center; 
+                text-transform: capitalize;
+                font-weight: 100px;
+            }
+            .wd h4{
+                text-align: justify;
+                color: darkgray;
+                font-weight: normal;
+            }
+            .wd h2{
+                text-align: center;
+                text-transform: uppercase;
+                font-weight: normal;
+                margin: 40px auto;
+            }
+
+            .opt form , input[type="button"]{
+                background-color: black;
+                color:white;
+                padding: 10px;
+                margin:-14px auto;
+                padding-right: 50px;
+                padding-left: 50px;
+                text-align: center;
+
+            }
+            form, input[type="button"]:hover{background-color: rgb(135, 112, 165)}
+
+            .reservation-list{
+                background-color: black;
+                color:white;
+                padding: 10px;
+                margin:-14px auto;
+                padding-right: 50px;
+                padding-left: 50px;
+                text-align: center;
+            }
+            footer {
+                background-color: black;
+                height: 50px;
+                width: 100%;
+                margin-top: auto;
+                margin-top: auto;
+                position: relative; 
+                bottom: 0; 
+            }
+        </style>
+   </head>
+   <body>
+    <div class = "container">
+        <gradient>
+            <div class="box">
+                <ul type="none">
+                    <li><a href="restaurant (1).html"> Home</a></li>
+                    <li><a href=""> Menu</a></li>
+                    <li><a href=""> Online Order</a></li>
+                    <li><a href="About Us/index.html"> About Us</a></li>
+                    <li><a href="contact.html"> Contact</a></li>
+                </ul>
+            </div>
+        </gradient>
+        <div class="wd">
+            <h1>Welcome</h1>
+            <h4>
+               Welcome to our website where you will be introduced to the finest cuisine at our restaurant, as well as being able to browse our menu and make reservations right here!
+            </h4>
+   
+            <h2>
+            Reservations
+            </h2>
+
+        <div class="opt">
+            <form action="" method="post">
+                <input type="button" id="start-button" value="Add Reservation">
+            </form>
+            <div id="reservation-list" style="display: none;">
+                <h3>reservation list</h3>
+                <input type="text" id="add-name-input" placeholder="Enter Name">
+                <input type="date" id="add-item-input" value="2023-01-01">
+                <input type="time" id="add-time-input" value="00:00">
+                <button id="add-item-button">Add</button>
+                <ul></ul>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const startButton = document.getElementById("start-button");
+        const reservationList = document.getElementById("reservation-list");
+        const addItemInput = document.getElementById("add-item-input");
+        const addNameInput = document.getElementById("add-name-input");
+        const addItemButton = document.getElementById("add-item-button");
+        const addTimeInput = document.getElementById("add-time-input");
+
+        let isOn = false;
+
+        function toggleStart() {
+            isOn = !isOn;
+            if (isOn) {
+                reservationList.style.display = "block";
+            } else {
+                reservationList.style.display = "none";
+            }
+        }
+
+        function addItemToList() {
+            const newItemText = addNameInput.value + " - " + addItemInput.value + "-" + addTimeInput.value;
+            if (newItemText.trim() !== "") {
+                const reservationItems = reservationList.querySelector("ul");
+                const newItem = document.createElement("li");
+                newItem.textContent = newItemText;
+                reservationItems.appendChild(newItem);
+                addNameInput.value = "";
+                addItemInput.value = "";
+                addTimeInput.value = "";
+            }
+        }
+        
+        startButton.addEventListener("click", toggleStart);
+        addItemButton.addEventListener("click", addItemToList);
+    </script>
+    
+</body>
+<footer>
+      <p>&copy; 2024   </p>
+</footer>
+</html>
